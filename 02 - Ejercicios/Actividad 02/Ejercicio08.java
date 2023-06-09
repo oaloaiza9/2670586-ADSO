@@ -17,6 +17,8 @@ public class Ejercicio08{
 			int d4 = (numero/10)%10;
 			int d5 = numero%10;
 
+			System.out.print(" => Texto: \n => ");
+
 			// Algoritmo para validar Digito 1
 			if (d1==0) {
 				System.out.print("");
@@ -164,7 +166,126 @@ public class Ejercicio08{
 			}
 
 			// Algoritmo para validar Digito 4
-			
+			if (d4==0) {
+				System.out.print("");
+			}else if(d4==1){
+				if (d5==0) {
+					System.out.print("DIEZ ");
+				}else if(d5==1){
+					System.out.print("ONCE ");
+				}else if(d5==2){
+					System.out.print("DOCE ");
+				}else if(d5==3){
+					System.out.print("TRECE ");
+				}else if(d5==4){
+					System.out.print("CATORCE ");
+				}else if(d5==5){
+					System.out.print("QUINCE ");
+				}else if(d5==6){
+					System.out.print("DIECISEIS ");
+				}else if(d5==7){
+					System.out.print("DIECISIETE ");
+				}else if(d5==8){
+					System.out.print("DIECIOCHO ");
+				}else if(d5==9){
+					System.out.print("DIECINUEVE ");
+				}
+			}else if(d4==2){
+				if (d5==0) {
+					System.out.print("VEINTE ");
+				}else{
+					System.out.print("VEINTI");
+				}
+			}else if(d4==3){
+				if (d5==0) {
+					System.out.print("TREINTA ");
+				}else{
+					System.out.print("TREINTA Y ");
+				}
+			}else if(d4==4){
+				if (d5==0) {
+					System.out.print("CUARENTA ");
+				}else{
+					System.out.print("CUARENTA Y ");
+				}
+			}else if(d4==5){
+				if (d5==0) {
+					System.out.print("CINCUENTA ");
+				}else{
+					System.out.print("CINCUENTA Y ");
+				}
+			}else if(d4==6){
+				if (d5==0) {
+					System.out.print("SESENTA ");
+				}else{
+					System.out.print("SESENTA Y ");
+				}
+			}else if(d4==7){
+				if (d5==0) {
+					System.out.print("SETENTA ");
+				}else{
+					System.out.print("SETENTA Y ");
+				}
+			}else if(d4==8){
+				if (d5==0) {
+					System.out.print("OCHENTA ");
+				}else{
+					System.out.print("OCHENTA Y ");
+				}
+			}else if(d4==9){
+				if (d5==0) {
+					System.out.print("NOVENTA ");
+				}else{
+					System.out.print("NOVENTA Y ");
+				}
+			}
+
+
+			// Algoritmo para validar Digito 5
+			if (d5==0) {
+				if(d1==0 && d2==0 && d3==0 && d4==0){
+					System.out.print("CERO");
+				}else{
+					System.out.print("");
+				}
+			}else if(d5==1){
+				if (d4!=1) {
+					System.out.print("UNO ");
+				}
+			}else if(d5==2){
+				if (d4!=1) {
+					System.out.print("DOS ");
+				}
+			}else if(d5==3){
+				if (d4!=1) {
+					System.out.print("TRES ");
+				}
+			}else if(d5==4){
+				if (d4!=1) {
+					System.out.print("CUATRO ");
+				}
+			}else if(d5==5){
+				if (d4!=1) {
+					System.out.print("CINCO ");
+				}
+			}else if(d5==6){
+				if (d4!=1) {
+					System.out.print("SEIS ");
+				}
+			}else if(d5==7){
+				if (d4!=1) {
+					System.out.print("SIETE ");
+				}
+			}else if(d5==8){
+				if (d4!=1) {
+					System.out.print("OCHO ");
+				}
+			}else if(d5==9){
+				if (d4!=1) {
+					System.out.print("NUEVE ");
+				}
+			}
+
 		}else{
 			System.out.println(" => Numero invalido. ");
 		}
