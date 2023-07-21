@@ -15,13 +15,13 @@ public class Ejemplo02{
 
 		// Ciclo para llenar el arreglo
 		for (int i=0; i<arreglo.length; i++){
-			arreglo[i] = (i+1)+2;
+			arreglo[i] = (i+1)*2;
 		}
 
 		// Ciclo para imprimir el arreglo
 		for (int i=0; i<arreglo.length; i++) {
 			System.out.print(" ["+arreglo[i]+"]");
 		}
-		
+
 	}
 }
