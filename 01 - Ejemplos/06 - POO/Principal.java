@@ -4,7 +4,7 @@ public class Principal{
 		
 		Persona persona_01 = new Persona( 108800, "Oscar", "Loaiza", 85, 185, 300.5 );
 		Persona persona_02 = new Persona( 108801, "Daniel", "Garcia", 32, 175, 110.8 );
-
+		
 		persona_01.imprimirEstado();
 		persona_02.imprimirEstado();
 
