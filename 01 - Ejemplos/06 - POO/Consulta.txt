@@ -1,0 +1,10 @@
+1. ¿Qué son funciones?
+2. ¿Qué es un Paradigma de Programación?
+3. ¿Qué es el Paradigma de Programación 
+    Orientado a Objetos?
+4. ¿Qué es una Clase en POO?
+5. ¿Qué son los atributos?
+6. ¿Qué son los métodos?
+7. ¿Qué es y para qué sirve el constructor?
+8. ¿Qué son métodos Getters y Setters?
+9. ¿Qué es una instancia de una clase?
