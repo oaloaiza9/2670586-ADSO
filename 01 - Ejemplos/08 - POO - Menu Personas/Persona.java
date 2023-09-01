@@ -82,4 +82,9 @@ public class Persona{
 		System.out.println("|-------------------------------|");
 	}
 
+	public String getInfoInLine(){
+		String texto = cedula+" - "+nombres+" "+apellidos+" - "+edad+" anios - "+altura+" cm - "+peso+" kg";
+		return texto;
+	}
+
 }
