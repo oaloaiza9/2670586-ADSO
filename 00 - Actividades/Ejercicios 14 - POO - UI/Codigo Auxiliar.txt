@@ -1,0 +1,8 @@
+|------------------------------------------|
+| Agregar icono en JFrame:                 |
+| Este fragmento de codigo debe ubicarse   |
+| en el metodo initComponents();           |
+|------------------------------------------|
+	
+	setIconImage(getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_factura.png") ));
+
