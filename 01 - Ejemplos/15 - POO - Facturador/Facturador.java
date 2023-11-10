@@ -8,6 +8,8 @@ import javax.swing.border.*;
 public class Facturador extends JFrame{
 
 	// Atributos
+	private Usuario listaUsuarios[];
+	private Producto listaProductos[];
 	private JPanel contenedorItems;
     private JLabel listaJLabels [];
     private int indiceItems;
@@ -39,8 +41,9 @@ public class Facturador extends JFrame{
 	private JButton btn_add_producto;
 
 	// Metodos
-	public Facturador(){
-		this.listaJLabels = new JLabel [50];
+	public Facturador(Usuario [] listaUsuarios, Producto [] listaProductos){
+		this.listaUsuarios = listaUsuarios;
+		this.listaProductos = listaProductos;
         this.indiceItems = 0;
         this.totalFactura = 0;
 
@@ -48,6 +51,7 @@ public class Facturador extends JFrame{
 	}
 
 	public void initComponent(){
+		this.listaJLabels = new JLabel [50];
 
 		Toolkit sistema = Toolkit.getDefaultToolkit();
 		Dimension tamanio = sistema.getScreenSize();
@@ -371,7 +375,7 @@ public class Facturador extends JFrame{
             etq_temporal.setFont( new Font("Arial", Font.PLAIN, 18) );
             etq_temporal.setOpaque(true);
             etq_temporal.setBackground( Color.white );
-            etq_temporal.setBorder( borderGris );
+            etq_temporal.setBorder( borderColor );
             this.listaJLabels[i] = etq_temporal;
             constItems.gridy = i;
             constItems.gridx = 0;
@@ -401,11 +405,93 @@ public class Facturador extends JFrame{
         restriccion.insets = new Insets(0, 0, 0, 10);
         contPrincipal.add( etq_total, restriccion );
 
+        desHabilitarInput(input_nombres_cliente);
+        desHabilitarInput(input_direccion_cliente);
+        desHabilitarInput(input_nombres_vendedor);
+
 		add( contPrincipal );
 		setResizable(false);
 		setVisible(true);
 		revalidate();
 		repaint();
+
+		ActionListener evento_click_cliente = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				buscarCliente();
+			}
+		};
+		btn_buscar_cliente.addActionListener(evento_click_cliente);
+
+		ActionListener evento_click_vendedor = new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				buscarVendedor();
+			}
+		};
+		btn_buscar_vendedor.addActionListener(evento_click_vendedor);
+
+		KeyListener evento_key_cliente = new KeyListener(){
+		    public void keyPressed(KeyEvent e){
+		    }
+
+		    public void keyReleased(KeyEvent e){
+		        input_nombres_cliente.setText("");
+		        input_direccion_cliente.setText("");
+		        if ( e.getKeyCode()==10 ) {
+		        	buscarCliente();
+		        }
+		    }
+
+		    public void keyTyped(KeyEvent e){
+		    }
+		};
+
+		input_cedula_cliente.addKeyListener( evento_key_cliente );
+
+		KeyListener evento_key_vendedor = new KeyListener(){
+		    public void keyPressed(KeyEvent e){
+		    }
+
+		    public void keyReleased(KeyEvent e){
+		        input_nombres_vendedor.setText("");
+		        if ( e.getKeyCode()==10 ) {
+		        	buscarVendedor();
+		        }
+		    }
+
+		    public void keyTyped(KeyEvent e){
+		    }
+		};
+
+		input_cedula_vendedor.addKeyListener( evento_key_vendedor );
+
+
+	}
+
+	public void desHabilitarInput(JTextField campo){
+		campo.setEditable(false);
+		campo.setBackground( new Color(238, 238, 238) );
+		campo.setForeground( Color.BLACK );
+	}
+
+	public void buscarCliente(){
+		String cedula = input_cedula_cliente.getText();
+		for (int i=0; i<listaUsuarios.length; i++) {
+			if ( listaUsuarios[i]!=null && listaUsuarios[i].getRol().equals("CLIENTE") && listaUsuarios[i].getCedula().equals(cedula) ) {
+				input_nombres_cliente.setText( listaUsuarios[i].getNombres() );
+				input_direccion_cliente.setText( listaUsuarios[i].getDireccion() );
+				input_cedula_vendedor.requestFocus();
+			}
+		}
+	}
+
+	public void buscarVendedor(){
+		String cedula = input_cedula_vendedor.getText();
+		for (int i=0; i<listaUsuarios.length; i++) {
+			if ( listaUsuarios[i]!=null && listaUsuarios[i].getRol().equals("VENDEDOR") && listaUsuarios[i].getCedula().equals(cedula) ) {
+				input_nombres_vendedor.setText( listaUsuarios[i].getNombres() );
+				input_id_producto.requestFocus();
+			}
+		}
 	}
 
 }
