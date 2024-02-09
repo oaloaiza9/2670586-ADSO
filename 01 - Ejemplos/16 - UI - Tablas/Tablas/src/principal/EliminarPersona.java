@@ -1,8 +1,18 @@
 package principal;
 
+import utils.Persona;
+
 public class EliminarPersona extends javax.swing.JFrame {
 
-    public EliminarPersona() {
+    TablaBotones ventana;
+    Persona listaPersonas[];
+    int posicion;
+    
+    public EliminarPersona(TablaBotones ventana, Persona[] listaPersonas, int posicion) {
+        this.ventana = ventana;
+        this.listaPersonas = listaPersonas;
+        this.posicion = posicion;
+        
         initComponents();
         initAlternComponents();
     }
@@ -12,6 +22,8 @@ public class EliminarPersona extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setIconImage( getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_registro.png") ) );
+        
+        etqPersona.setText( listaPersonas[posicion].getNombres()+" "+listaPersonas[posicion].getApellidos() );
     }
     
     @SuppressWarnings("unchecked")
@@ -26,7 +38,7 @@ public class EliminarPersona extends javax.swing.JFrame {
         etqTexto = new javax.swing.JLabel();
         etqPersona = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         contenedorTitulo.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -58,9 +70,21 @@ public class EliminarPersona extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setFocusable(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnCancelar.setText("CANCELAR");
+        btnCancelar.setFocusable(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         etqTexto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         etqTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,16 +98,16 @@ public class EliminarPersona extends javax.swing.JFrame {
         contenedorFormularioLayout.setHorizontalGroup(
             contenedorFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorFormularioLayout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addContainerGap()
+                .addComponent(etqTexto, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(etqPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
-            .addGroup(contenedorFormularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(etqTexto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(etqPersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(94, 94, 94))
         );
         contenedorFormularioLayout.setVerticalGroup(
             contenedorFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +139,20 @@ public class EliminarPersona extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        for (int i=posicion; i<listaPersonas.length-1; i++) {
+            listaPersonas[i] = listaPersonas[i+1];
+        }
+        listaPersonas[listaPersonas.length-1] = null;
+        
+        ventana.imprimirPersonas();
+        dispose();
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

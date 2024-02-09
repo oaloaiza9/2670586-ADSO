@@ -1,8 +1,16 @@
 package principal;
 
-public class FormularioEdicion extends javax.swing.JFrame {
+import utils.Persona;
 
-    public FormularioEdicion() {
+public class FormularioEdicion extends javax.swing.JFrame {
+    
+    Persona persona;
+    TablaBotones ventana;
+    
+    public FormularioEdicion(Persona persona, TablaBotones ventana) {
+        this.persona = persona;
+        this.ventana = ventana;
+        
         initComponents();
         initAlternComponents();
     }
@@ -12,6 +20,12 @@ public class FormularioEdicion extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setIconImage( getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_registro.png") ) );
+        
+        campoDocumento.setText(persona.getDocumento());
+        campoNombres.setText(persona.getNombres());
+        campoApellidos.setText(persona.getApellidos());
+        campoTelefono.setText(persona.getTelefono());
+        campoCorreo.setText(persona.getCorreo());
     }
     
     @SuppressWarnings("unchecked")
@@ -33,7 +47,7 @@ public class FormularioEdicion extends javax.swing.JFrame {
         campoCorreo = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         contenedorTitulo.setBackground(new java.awt.Color(0, 51, 153));
 
@@ -187,7 +201,15 @@ public class FormularioEdicion extends javax.swing.JFrame {
         if( documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals("") ){
             Alerta ventana = new Alerta("Todos los campos son Obligatorios.");
         }else{
+            persona.setDocumento(documento);
+            persona.setNombres(nombres);
+            persona.setApellidos(apellidos);
+            persona.setTelefono(telefono);
+            persona.setCorreo(correo);
             
+            ventana.imprimirPersonas();
+            ventana.setVisible(true);
+            dispose();
         }
 
     }//GEN-LAST:event_btnAgregarActionPerformed
