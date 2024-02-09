@@ -97,17 +97,27 @@ public class TablaBasica extends javax.swing.JFrame {
         etqDocumento.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         etqDocumento.setText("Documento:");
 
+        campoDocumento.setMargin(new java.awt.Insets(2, 10, 2, 10));
+
         etqNombres.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         etqNombres.setText("Nombres:");
+
+        campoNombres.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
         etqApellidos.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         etqApellidos.setText("Apellidos:");
 
+        campoApellidos.setMargin(new java.awt.Insets(2, 10, 2, 10));
+
         etqTelefono.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         etqTelefono.setText("Telefono:");
 
+        campoTelefono.setMargin(new java.awt.Insets(2, 10, 2, 10));
+
         etqCorreo.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         etqCorreo.setText("Correo Elec.:");
+
+        campoCorreo.setMargin(new java.awt.Insets(2, 10, 2, 10));
 
         btnAgregar.setBackground(new java.awt.Color(0, 153, 0));
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
