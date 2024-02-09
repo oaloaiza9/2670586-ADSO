@@ -1,4 +1,4 @@
-package principal;
+package utils;
 
 public class Persona {
     
