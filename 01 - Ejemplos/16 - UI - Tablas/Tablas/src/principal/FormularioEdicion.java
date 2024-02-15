@@ -4,13 +4,7 @@ import utils.Persona;
 
 public class FormularioEdicion extends javax.swing.JFrame {
     
-    Persona persona;
-    TablaBotones ventana;
-    
-    public FormularioEdicion(Persona persona, TablaBotones ventana) {
-        this.persona = persona;
-        this.ventana = ventana;
-        
+    public FormularioEdicion() {
         initComponents();
         initAlternComponents();
     }
@@ -20,12 +14,6 @@ public class FormularioEdicion extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setIconImage( getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_registro.png") ) );
-        
-        campoDocumento.setText(persona.getDocumento());
-        campoNombres.setText(persona.getNombres());
-        campoApellidos.setText(persona.getApellidos());
-        campoTelefono.setText(persona.getTelefono());
-        campoCorreo.setText(persona.getCorreo());
     }
     
     @SuppressWarnings("unchecked")
@@ -201,15 +189,8 @@ public class FormularioEdicion extends javax.swing.JFrame {
         if( documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals("") ){
             Alerta ventana = new Alerta("Todos los campos son Obligatorios.");
         }else{
-            persona.setDocumento(documento);
-            persona.setNombres(nombres);
-            persona.setApellidos(apellidos);
-            persona.setTelefono(telefono);
-            persona.setCorreo(correo);
-            
-            ventana.imprimirPersonas();
-            ventana.setVisible(true);
-            dispose();
+            // Codigo para Editar en caso de no
+            // estar vacio el formulario
         }
 
     }//GEN-LAST:event_btnAgregarActionPerformed

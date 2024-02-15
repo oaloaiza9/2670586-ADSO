@@ -3,16 +3,8 @@ package principal;
 import utils.Persona;
 
 public class EliminarPersona extends javax.swing.JFrame {
-
-    TablaBotones ventana;
-    Persona listaPersonas[];
-    int posicion;
     
-    public EliminarPersona(TablaBotones ventana, Persona[] listaPersonas, int posicion) {
-        this.ventana = ventana;
-        this.listaPersonas = listaPersonas;
-        this.posicion = posicion;
-        
+    public EliminarPersona() {
         initComponents();
         initAlternComponents();
     }
@@ -23,7 +15,6 @@ public class EliminarPersona extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage( getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_registro.png") ) );
         
-        etqPersona.setText( listaPersonas[posicion].getNombres()+" "+listaPersonas[posicion].getApellidos() );
     }
     
     @SuppressWarnings("unchecked")
@@ -145,13 +136,7 @@ public class EliminarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        for (int i=posicion; i<listaPersonas.length-1; i++) {
-            listaPersonas[i] = listaPersonas[i+1];
-        }
-        listaPersonas[listaPersonas.length-1] = null;
-        
-        ventana.imprimirPersonas();
-        dispose();
+        // Codigo para Eliminar la persona Actual
     }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

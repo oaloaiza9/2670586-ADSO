@@ -21,7 +21,7 @@ public class TablaBotones extends javax.swing.JFrame {
     Persona listaPersonas[];
     
     public TablaBotones() {
-        listaPersonas = new Persona[5];
+        listaPersonas = new Persona[10];
         listaPersonas[0] = new Persona("108800", "Oscar", "Loaiza", "3333330", "oscar@mail.com");
         listaPersonas[1] = new Persona("108801", "Daniel", "Garcia", "3333331", "daniel@mail.com");
         listaPersonas[2] = new Persona("108802", "Juan", "Lopez", "3333332", "juan@mail.com");
@@ -94,13 +94,10 @@ public class TablaBotones extends javax.swing.JFrame {
             Object dato[] = new Object[]{ documento, nombres, apellidos, telefono, correo, btnEditar, btnEliminar };
             modelo.addRow(dato);
             
-            Persona temporal = listaPersonas[i];
-            TablaBotones ventanaActual = this;
             btnEditar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ventanaActual.setVisible(false);
-                    FormularioEdicion ventana = new FormularioEdicion(temporal, ventanaActual);
+                    FormularioEdicion ventana = new FormularioEdicion();
                 }
             });
             
@@ -108,7 +105,7 @@ public class TablaBotones extends javax.swing.JFrame {
             btnEliminar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    EliminarPersona ventana = new EliminarPersona(ventanaActual, listaPersonas, posicion);
+                    EliminarPersona ventana = new EliminarPersona();
                 }
             });
             
