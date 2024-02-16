@@ -21,7 +21,7 @@ public class TablaBotones extends javax.swing.JFrame {
     Persona listaPersonas[];
     
     public TablaBotones() {
-        listaPersonas = new Persona[10];
+        listaPersonas = new Persona[100];
         listaPersonas[0] = new Persona("108800", "Oscar", "Loaiza", "3333330", "oscar@mail.com");
         listaPersonas[1] = new Persona("108801", "Daniel", "Garcia", "3333331", "daniel@mail.com");
         listaPersonas[2] = new Persona("108802", "Juan", "Lopez", "3333332", "juan@mail.com");
@@ -70,48 +70,47 @@ public class TablaBotones extends javax.swing.JFrame {
         tablaDatos.setRowHeight(25);
     }
     
-    public void imprimirPersonas(){
-        modelo.setRowCount(0);
-        for (int i=0;i<listaPersonas.length && listaPersonas[i]!=null; i++) {
-            String documento = listaPersonas[i].getDocumento();
-            String nombres = listaPersonas[i].getNombres();
-            String apellidos = listaPersonas[i].getApellidos();
-            String telefono = listaPersonas[i].getTelefono();
-            String correo = listaPersonas[i].getCorreo();
-            
-            JButton btnEditar = new JButton();
-            btnEditar.setBackground(Color.white);
-            Image icono_editar = getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_editar.png") );
-            icono_editar = icono_editar.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btnEditar.setIcon( new ImageIcon(icono_editar) );
-            
-            JButton btnEliminar = new JButton();
-            btnEliminar.setBackground(Color.white);
-            Image icono_eliminar = getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_eliminar.png") );
-            icono_eliminar = icono_eliminar.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-            btnEliminar.setIcon( new ImageIcon(icono_eliminar) );
-            
-            Object dato[] = new Object[]{ documento, nombres, apellidos, telefono, correo, btnEditar, btnEliminar };
-            modelo.addRow(dato);
-            
-            btnEditar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FormularioEdicion ventana = new FormularioEdicion();
-                }
-            });
-            
-            final int posicion = i;
-            btnEliminar.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    EliminarPersona ventana = new EliminarPersona();
-                }
-            });
-            
-            
+        public void imprimirPersonas(){
+            modelo.setRowCount(0);
+            for (int i=0;i<listaPersonas.length && listaPersonas[i]!=null; i++) {
+                String documento = listaPersonas[i].getDocumento();
+                String nombres = listaPersonas[i].getNombres();
+                String apellidos = listaPersonas[i].getApellidos();
+                String telefono = listaPersonas[i].getTelefono();
+                String correo = listaPersonas[i].getCorreo();
+
+                JButton btnEditar = new JButton();
+                btnEditar.setBackground(Color.white);
+                Image icono_editar = getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_editar.png") );
+                icono_editar = icono_editar.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                btnEditar.setIcon( new ImageIcon(icono_editar) );
+
+                JButton btnEliminar = new JButton();
+                btnEliminar.setBackground(Color.white);
+                Image icono_eliminar = getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_eliminar.png") );
+                icono_eliminar = icono_eliminar.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                btnEliminar.setIcon( new ImageIcon(icono_eliminar) );
+
+                Object dato[] = new Object[]{ documento, nombres, apellidos, telefono, correo, btnEditar, btnEliminar };
+                modelo.addRow(dato);
+
+                TablaBotones ventanaActual = this;
+                final int posicion = i;
+                btnEditar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        FormularioEdicion ventana = new FormularioEdicion( ventanaActual, posicion );
+                    }
+                });
+
+                btnEliminar.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        EliminarPersona ventana = new EliminarPersona( ventanaActual, posicion );
+                    }
+                });
+            }
         }
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

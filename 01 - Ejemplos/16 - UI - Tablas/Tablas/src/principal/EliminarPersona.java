@@ -4,7 +4,13 @@ import utils.Persona;
 
 public class EliminarPersona extends javax.swing.JFrame {
     
-    public EliminarPersona() {
+    TablaBotones ventana;
+    int posicion;
+    
+    public EliminarPersona(TablaBotones ventana, int posicion) {
+        this.ventana = ventana;
+        this.posicion = posicion;
+        
         initComponents();
         initAlternComponents();
     }
@@ -15,6 +21,7 @@ public class EliminarPersona extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage( getToolkit().createImage( ClassLoader.getSystemResource("imagenes/icono_registro.png") ) );
         
+        etqPersona.setText( ventana.listaPersonas[posicion].getNombres()+" "+ventana.listaPersonas[posicion].getApellidos()   );
     }
     
     @SuppressWarnings("unchecked")
@@ -81,7 +88,7 @@ public class EliminarPersona extends javax.swing.JFrame {
         etqTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqTexto.setText("¿Deseas eliminar esta Persona?");
 
-        etqPersona.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        etqPersona.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         etqPersona.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout contenedorFormularioLayout = new javax.swing.GroupLayout(contenedorFormulario);
@@ -136,7 +143,13 @@ public class EliminarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // Codigo para Eliminar la persona Actual
+        for (int i=posicion; i<ventana.listaPersonas.length-1; i++) {
+            ventana.listaPersonas[i] = ventana.listaPersonas[i+1];
+        }
+        ventana.listaPersonas[ventana.listaPersonas.length-1] = null;
+        
+        ventana.imprimirPersonas();
+        dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
