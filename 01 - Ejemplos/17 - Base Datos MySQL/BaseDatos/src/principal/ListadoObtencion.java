@@ -2,14 +2,20 @@ package principal;
 
 import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
+import utils.BaseDatos;
+import utils.Persona;
 
 public class ListadoObtencion extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
+    BaseDatos basedatos;
     
-    public ListadoObtencion() {
+    public ListadoObtencion(BaseDatos basedatos) {
+        this.basedatos = basedatos;
+        
         initComponents();
         initAlternComponent();
+        imprimirPersonas();
     }
     
     public void initAlternComponent(){
@@ -30,6 +36,20 @@ public class ListadoObtencion extends javax.swing.JFrame {
         tablaPersonas.getColumnModel().getColumn(4).setPreferredWidth(200);
     }
 
+    public void imprimirPersonas(){
+        Persona lista [] = basedatos.extraerPersonas();
+        modelo.setRowCount(0);
+        for (int i=0; i<lista.length && lista[i]!=null; i++) {
+            String documento = lista[i].getDocumento();
+            String nombres = lista[i].getNombres()+" "+lista[i].getApellidos();
+            String telefono = lista[i].getTelefono();
+            String correo = lista[i].getCorreo();
+            
+            Object datos[] = new Object[]{ (i+1), documento, nombres, telefono, correo};
+            modelo.addRow(datos);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

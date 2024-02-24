@@ -4,10 +4,15 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import utils.BaseDatos;
 
 public class Menu extends javax.swing.JFrame {
-
+    
+    BaseDatos basedatos;
+    
     public Menu() {
+        basedatos = new BaseDatos();
+        
         initComponents();
         initAlternComponent();
     }
@@ -160,19 +165,19 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        FormularioCreacion ventana = new FormularioCreacion();
+        FormularioCreacion ventana = new FormularioCreacion(basedatos);
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        FormularioEdicion ventana = new FormularioEdicion();
+        FormularioEdicion ventana = new FormularioEdicion(basedatos);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        FormularioEliminacion ventana = new FormularioEliminacion();
+        FormularioEliminacion ventana = new FormularioEliminacion(basedatos);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeerActionPerformed
-        ListadoObtencion ventana = new ListadoObtencion();
+        ListadoObtencion ventana = new ListadoObtencion(basedatos);
     }//GEN-LAST:event_btnLeerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,10 +1,16 @@
 package principal;
 
 import java.awt.Image;
+import utils.BaseDatos;
+import utils.Persona;
 
 public class FormularioEdicion extends javax.swing.JFrame {
-
-    public FormularioEdicion() {
+    
+    BaseDatos basedatos;
+    
+    public FormularioEdicion(BaseDatos basedatos) {
+        this.basedatos = basedatos;
+        
         initComponents();
         initAlternComponent();
     }
@@ -197,6 +203,32 @@ public class FormularioEdicion extends javax.swing.JFrame {
             Alerta ventana = new Alerta("Se debe indicar un numero de Documento.");
         }else{
             
+            Persona temporal = basedatos.buscarPersona(documento);
+            if (temporal!=null) {
+                campoNombres.setText(temporal.getNombres());
+                campoApellidos.setText(temporal.getApellidos());
+                campoTelefono.setText(temporal.getTelefono());
+                campoCorreo.setText(temporal.getCorreo());
+                
+                campoNombres.setEnabled(true);
+                campoApellidos.setEnabled(true);
+                campoTelefono.setEnabled(true);
+                campoCorreo.setEnabled(true);
+                btnEditar.setEnabled(true);
+            }else{
+                Alerta ventana = new Alerta("La persona no existe.");
+                
+                campoNombres.setText("");
+                campoApellidos.setText("");
+                campoTelefono.setText("");
+                campoCorreo.setText("");
+                
+                campoNombres.setEnabled(false);
+                campoApellidos.setEnabled(false);
+                campoTelefono.setEnabled(false);
+                campoCorreo.setEnabled(false);
+                btnEditar.setEnabled(false);
+            }
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -206,7 +238,23 @@ public class FormularioEdicion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        String documento = campoDocumento.getText();
+        String nombres = campoNombres.getText();
+        String apellidos = campoApellidos.getText();
+        String direccion = "";
+        String telefono = campoTelefono.getText();
+        String correo = campoCorreo.getText();
+
+        if( documento.equals("") || nombres.equals("") || apellidos.equals("") || telefono.equals("") || correo.equals("") ){
+            Alerta ventana = new Alerta("Todos los campos son Obligatorios.");
+        }else{
+            boolean proceso = basedatos.actualizarPersona(documento, nombres, apellidos, direccion, telefono, correo);
+            if (proceso) {
+                System.out.println("Persona "+documento+" editada con exito.");
+            }else{
+                Alerta ventana = new Alerta("Error al editar a la persona");
+            }
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

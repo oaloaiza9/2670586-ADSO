@@ -1,10 +1,16 @@
 package principal;
 
 import java.awt.Image;
+import utils.BaseDatos;
+import utils.Persona;
 
 public class FormularioEliminacion extends javax.swing.JFrame {
-
-    public FormularioEliminacion() {
+    
+    BaseDatos basedatos;
+    
+    public FormularioEliminacion(BaseDatos basedatos) {
+        this.basedatos = basedatos;
+        
         initComponents();
         initAlternComponent();
     }
@@ -37,7 +43,7 @@ public class FormularioEliminacion extends javax.swing.JFrame {
         etqCorreo = new javax.swing.JLabel();
         campoCorreo = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,15 +112,15 @@ public class FormularioEliminacion extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setBackground(new java.awt.Color(153, 0, 0));
-        btnEditar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("ELIMINAR");
-        btnEditar.setEnabled(false);
-        btnEditar.setFocusable(false);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(153, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.setEnabled(false);
+        btnEliminar.setFocusable(false);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -150,7 +156,7 @@ public class FormularioEliminacion extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
         );
         contenedorFormularioLayout.setVerticalGroup(
@@ -183,7 +189,7 @@ public class FormularioEliminacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(contenedorFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
@@ -209,7 +215,22 @@ public class FormularioEliminacion extends javax.swing.JFrame {
         if( documento.equals("")){
             Alerta ventana = new Alerta("Se debe indicar un numero de Documento.");
         }else{
-            
+            Persona temporal = basedatos.buscarPersona(documento);
+            if (temporal!=null) {
+                campoNombres.setText(temporal.getNombres());
+                campoApellidos.setText(temporal.getApellidos());
+                campoTelefono.setText(temporal.getTelefono());
+                campoCorreo.setText(temporal.getCorreo());
+                
+                btnEliminar.setEnabled(true);
+            }else{
+                Alerta ventana = new Alerta("La persona no existe.");
+                campoNombres.setText("-----------------------------------");
+                campoApellidos.setText("-----------------------------------");
+                campoTelefono.setText("-----------------------------------");
+                campoCorreo.setText("-----------------------------------");
+                btnEliminar.setEnabled(false);
+            }
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -218,14 +239,22 @@ public class FormularioEliminacion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String documento = campoDocumento.getText();
+        
+        boolean proceso = basedatos.eliminarPersona(documento);
+        if (proceso) {
+            System.out.println("Persona Eliminada.");
+        }else{
+            Alerta ventana = new Alerta("Error al eliminar a la persona.");
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JTextField campoApellidos;
     private javax.swing.JTextField campoCorreo;
     private javax.swing.JTextField campoDocumento;
