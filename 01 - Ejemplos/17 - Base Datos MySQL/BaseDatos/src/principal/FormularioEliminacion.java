@@ -1,5 +1,6 @@
 package principal;
 
+import java.awt.Color;
 import java.awt.Image;
 import utils.BaseDatos;
 import utils.Persona;
@@ -23,6 +24,11 @@ public class FormularioEliminacion extends javax.swing.JFrame {
         Image icono_registro = getToolkit().createImage(ClassLoader.getSystemResource("imagenes/icono_registro.png"));
         icono_registro = icono_registro.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         setIconImage(icono_registro);
+        
+        campoNombres.setDisabledTextColor(Color.BLACK);
+        campoApellidos.setDisabledTextColor(Color.BLACK);
+        campoTelefono.setDisabledTextColor(Color.BLACK);
+        campoCorreo.setDisabledTextColor(Color.BLACK);
     }
 
     @SuppressWarnings("unchecked")
