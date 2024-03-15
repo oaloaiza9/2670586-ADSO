@@ -5,11 +5,11 @@ public class Principal{
 		byte turno = 15;
 		short loteria_risaralda = 1247;
 		int saldo_bancario = 1500000;
-		long tarjeta_identidad = 2000000000*5;
+		long tarjeta_identidad = 5001000000l;
 		float nota = 3.5f;
 		double pi = 3.141592653;
 		boolean bandera = true;
-		char letra = '9';
+		char letra = 'h';
 		String email = "oaloaiza9@gmail.com";
 
 		System.out.println("turno: "+turno);

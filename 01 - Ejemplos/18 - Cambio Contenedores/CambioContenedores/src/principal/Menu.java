@@ -71,6 +71,7 @@ public class Menu extends javax.swing.JFrame {
         etqTemporal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         contentMenu.setBackground(new java.awt.Color(153, 204, 255));
 
