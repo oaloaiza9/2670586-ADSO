@@ -1,0 +1,15 @@
+Para habilitar la cuenta de Gmail para permitir el envío de correos electrónicos desde aplicaciones de terceros:
+
+1. Habilitar la verificación de dos pasos.
+	- Iniciar sesión en Gmail
+	- Seleccionar "Gestionar tu cuenta de Google"
+	- Seleccionar en el menú la opción "Seguridad"
+	- En la sección "Cómo inicias sesión en Google", se encuentra la opción para "Verificación en dos pasos".
+
+2. Crear contraseña de aplicación.
+	- Se encuentra en la sección "Cómo inicias sesión en Google"
+	- En caso de no encontrarla se puede acceder directamente con el enlace:
+		
+		https://myaccount.google.com/apppasswords
+
+		Se debe tener en cuenta seleccionar la cuenta de Gmail a la que se quiere crear la contraseña. 
