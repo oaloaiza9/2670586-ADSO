@@ -8,4 +8,4 @@
 | ----------  TEXTO A ARREGLO JSON  ---------------|
 | -------------------------------------------------|
 
-	JsonObject variable = JsonParser.parseString( texto ).getAsJsonArray();
+	JsonArray variable = JsonParser.parseString( texto ).getAsJsonArray();
